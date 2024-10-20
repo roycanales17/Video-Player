@@ -1,0 +1,184 @@
+.video-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    position: relative;
+    height: 500px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    background: black;
+    color: #ddd;
+}
+.video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    transition: filter 0.3s ease;
+    z-index: 1;
+}
+.video-container video.paused {
+    filter: grayscale(100%);
+ }
+.video-container .header {
+    display: flex;
+    min-height: 50px;
+    width: 100%;
+    padding: 0 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    font-weight: lighter;
+    word-spacing: 1px;
+    transition: opacity 0.3s ease;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.video-container .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+    cursor: pointer;
+}
+.video-container .playback-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+}
+.video-container .playback-icon i {
+    color: #FFFFFF;
+    opacity: 1;
+    transition: opacity 0.150s ease-in-out;
+}
+.video-container .playback-icon i.fade-out {
+    opacity: 0;
+}
+.video-container .footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 50px;
+    width: 100%;
+    padding: 0 1rem;
+    gap: 5px;
+    transition: opacity 0.3s ease;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.video-container .seek-bar {
+    position: relative;
+    height: 2px;
+    width: 100%;
+    flex-shrink: 0; /*This allow to adjust the just the height upward only*/
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: height 0.2s ease;
+}
+.video-container .seek-bar:hover {
+    height: 6px;
+}
+.video-container .seek-bar .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: red;
+    z-index: 3;
+}
+.video-container .seek-bar .point {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: red;
+    height: 10px;
+    width: 10px;
+    z-index: 3;
+    display: none;
+}
+.video-container .seek-bar .buffered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: rgba(255,255,255,.5);
+    z-index: 1;
+}
+.video-container .seek-bar .thumbnail {
+    position: absolute;
+    background: #ddd;
+    top: -150px;
+    left: 0;
+    height: 105px;
+    width: 180px;
+    border: 3px solid red;
+    background-size: contain;
+    border-radius: 10px;
+    z-index: 2;
+    display: none;
+}
+.video-container .seek-bar .thumbnail small {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.video-container .seek-bar .thumbnail.blurred {
+    filter: blur(1.500px);
+}
+.video-container .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+    white-space: nowrap;
+    height: 100%;
+}
+.video-container .controls .icons {
+    cursor: pointer;
+}
+.video-container .controls .divider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    gap: 20px;
+}
+.video-container .controls .volume {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.video-container .controls .volume i {
+    min-width: 20px;
+}
+.video-container .controls .volume input {
+    height: 6px;
+    width: 0;
+    accent-color: #ddd;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: width 0.3s ease, opacity .1s ease, visibility 0s 0.3s;
+}
+.video-container .controls .volume:hover input {
+    width: 80px;
+    visibility: visible;
+    opacity: 1;
+    transition: width 0.3s ease, opacity .1s ease, visibility 0s;
+    margin-left: 20px;
+}
