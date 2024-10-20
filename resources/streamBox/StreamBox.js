@@ -30,16 +30,9 @@ class StreamBox extends StreamFacade(Listeners, Skeletons, Layouts) {
          * ------------------------------
          */
 
-        // Store and remove the title attribute from the video element
         this.createTitle();
-
-        // Assign a unique name to the video element, passing in the class name and ID
         this.createName(id, this.constructor.className);
-
-        // Wrap the video element in a container div
         this.createContainer(this.#mainClass);
-
-        // Create media partition
         this.createPartition();
 
         /**
