@@ -1,6 +1,8 @@
+import {Global} from "../components/Global.js";
+
 function StreamFacade(...mixins) {
 
-    class Facade {
+    class Facade extends Global {
         /**
          * Static method to initialize and create instances for each video element with the specified class name.
          * This method searches the document for all elements with the provided class name and creates a new
@@ -31,6 +33,56 @@ function StreamFacade(...mixins) {
             const minutes = Math.floor(time / 60);
             const seconds = Math.floor(time % 60).toString().padStart(2, '0');
             return `${minutes}:${seconds}`;
+        }
+
+        showDialog(data) {
+            let container = this.dialog;
+            container.innerHTML = '';
+            container.classList.add('show');
+
+            for(const label in data) {
+                const icon = data[label].icon;
+                const action = data[label].action;
+
+                let list = document.createElement('div');
+                let labelElem = document.createElement('label');
+                let iconElem = document.createElement('span');
+
+                list.classList.add('list');
+                labelElem.innerHTML = label;
+                iconElem.innerHTML = icon;
+
+                if (icon) {
+                    labelElem.style.alignItems = 'left';
+                    iconElem.style.alignItems = 'right';
+                    list.append(labelElem, iconElem);
+                } else {
+                    labelElem.style.alignItems = 'center';
+                    iconElem.style.alignItems = 'center';
+                    list.append(labelElem);
+                }
+
+                list.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    action();
+                });
+                container.append(list);
+            }
+        }
+
+        registerDialogAction(elem, action) {
+            const name = elem.getAttribute('action');
+            const container = this.dialog;
+            elem.addEventListener('click', () => {
+                if (container.classList.contains('show') && container.getAttribute('lastAction') === name) {
+                    container.innerHTML = '';
+                    container.classList.remove('show');
+                } else {
+                    container.setAttribute('lastAction', name);
+                    const result = action();
+                    this.showDialog(result);
+                }
+            });
         }
     }
 

@@ -233,6 +233,17 @@ class Skeletons extends Global {
                     controlElem.container.classList.add(control);
                     elem.append(controlElem.container);
                 }
+
+                switch (control) {
+                    case 'caption':
+                        controlElem.setAttribute('action', control);
+                        this.registerDialogAction(controlElem, () => this.captionDisplay(this.subtitles));
+                        break;
+                    case 'setting':
+                        controlElem.setAttribute('action', control);
+                        this.registerDialogAction(controlElem, () => this.settingDisplay());
+                        break;
+                }
                 controls[control] = controlElem;
             }
             container.append(elem);
@@ -323,8 +334,18 @@ class Skeletons extends Global {
         return container;
     }
 
+    createPopupDialog() {
+        let dialog = document.createElement('div');
+        dialog.classList.add('dialog');
+        this.dialog = dialog;
+        return dialog;
+    }
+
     createSubtitlePlacement() {
-        return document.createElement('div');
+        let subtitle = document.createElement('div');
+        subtitle.classList.add('subtitle');
+        this.subtitle = subtitle;
+        return subtitle;
     }
 }
 

@@ -51,6 +51,16 @@ class Global {
     playbackIcon;
 
     /**
+     * @type {HTMLElement} Dialog element that holds more info of the action.
+     */
+    dialog;
+
+    /**
+     * @type {HTMLElement} Subtitle element that displays the context.
+     */
+    subtitle;
+
+    /**
      * @type {HTMLElement} footer - The footer section element for the media, often used for additional controls or metadata.
      */
     footer;

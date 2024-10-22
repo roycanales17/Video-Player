@@ -1,9 +1,10 @@
 import {Listeners} from './blueprints/Listeners.js';
 import {Skeletons} from './components/Skeletons.js';
 import {Layouts} from "./components/Layouts.js";
+import {Dialogs} from "./blueprints/Dialogs.js";
 import {StreamFacade} from './blueprints/StreamFacade.js';
 
-class StreamBox extends StreamFacade(Listeners, Skeletons, Layouts) {
+class StreamBox extends StreamFacade(Dialogs, Listeners, Skeletons, Layouts) {
 
     /**
      * The main class name used for identifying video container elements in the DOM.

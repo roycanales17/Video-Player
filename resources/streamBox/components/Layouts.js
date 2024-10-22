@@ -10,6 +10,7 @@ class Layouts extends Global {
     setupContent() {
         this.content.append(
             this.createTogglePlaybackIcon(),
+            this.createPopupDialog(),
             this.createSubtitlePlacement()
         );
     }

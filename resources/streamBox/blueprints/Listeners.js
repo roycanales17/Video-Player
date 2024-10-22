@@ -58,7 +58,6 @@ class Listeners extends Global {
         }
 
         const toggleBtnIcon = (status) => {
-            console.log('clicked');
             if (status) {
                 btn.removeAttribute('class');
                 btn.classList.add('icons', 'fas', 'fa-pause');
